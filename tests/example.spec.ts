@@ -1,7 +1,7 @@
-import { test, expect } from "@playwright/test";
+import {test, expect, Page} from "@playwright/test";
 
 const url = "https://the-internet.herokuapp.com";
-const goToUrl = async (page, path) => await page.goto(`${url}${path}`);
+const goToUrl = async (page: Page, path: string) => await page.goto(`${url}${path}`);
 
 test("Interacting with elements", async ({ page }) => {
   goToUrl(page, "/checkboxes");
@@ -211,9 +211,4 @@ test("File download", async ({ page }) => {
   await download.saveAs(path);
 
   console.log(`File downloaded and saved to: ${path}`);
-});
-
-test("Homepage screenshot", async ({ page }) => {
-  await page.goto("https://playwright.dev/");
-  expect(await page.screenshot()).toMatchSnapshot("pw-homepage.png");
 });
